@@ -9,28 +9,28 @@ private String Domicilio;
 
 //set y get
 public String getNombre() {
-	return Nombre;
+	return this.Nombre;
 }
 public void setNombre(String nombre) {
-	Nombre = nombre;
+	this.Nombre = nombre;
 }
 public String getApellido() {
-	return Apellido;
+	return this.Apellido;
 }
 public void setApellido(String apellido) {
-	Apellido = apellido;
+	this.Apellido = apellido;
 }
 public int getDni() {
-	return dni;
+	return this.dni;
 }
 public void setDni(int dni) {
 	this.dni = dni;
 }
 public String getDomicilio() {
-	return Domicilio;
+	return this.Domicilio;
 }
 public void setDomicilio(String domicilio) {
-	Domicilio = domicilio;
+	this.Domicilio = domicilio;
 }
 
 //Constructores
