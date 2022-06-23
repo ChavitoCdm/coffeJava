@@ -15,7 +15,7 @@ Solución
 	La solución que se le puede brindar al cliente es desarrollar los siguiente subsistemas.
 
 
-Para el cliente: 
+Para el cliente: \n
 Registrarse.
 Iniciar sesión.
 Seleccionar productos
