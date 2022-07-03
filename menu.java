@@ -1,0 +1,56 @@
+package coffeeJava;
+
+import java.util.Scanner; 
+import java.io.IOException;
+
+public class menu {
+
+	static void imprimir(int num, String opcion) {
+		System.out.print(num + ". ");
+		System.out.println(opcion);	
+	}
+	
+	static void imprimir(String opcion) {
+		System.out.println(opcion);	
+	}
+
+	public static void main(String[] args) throws IOException {
+		Scanner sc = new Scanner(System.in);
+		// TODO Auto-generated method stub
+		imprimir("Ingrese su usuario");
+		imprimir("Ingrese su contrasena");
+		int elegido;
+		if (false) //para admin
+		{
+			imprimir(1, "control de cliente");
+			imprimir(2, "control de productos");
+			imprimir(3, "control de ventas");
+			elegido = sc.nextInt();
+			switch (elegido) {
+				case 1 : {
+					imprimir(1,"agregar usuario");
+					imprimir(2,"borrar usuario");
+					break;
+				}
+				case 2 : {
+					imprimir(1,"agregar 1 producto");
+					imprimir(2,"agregar lote de procutos");
+					imprimir(3,"borrar producto");
+					break;
+				}
+				case 3 : {
+					imprimir(1,"buscar venta por usuario");
+					imprimir(2,"buscar venta por nombre");
+					imprimir(3,"listar ventas pendientes");
+					imprimir(4,"vender producto");
+					break;
+				}
+			}
+		}
+		else if (true) {
+			imprimir(1,"descartar todo mi carrito");
+			imprimir(2,"listar mi carrito");
+			imprimir(3,"agregar producto");
+		}
+	}
+}
