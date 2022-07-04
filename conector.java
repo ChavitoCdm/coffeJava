@@ -12,6 +12,9 @@ public class conector {
 	public static String PASS = "market";
 	private static Connection conn = null;
 	private static Statement stmt = null;
+	private static ResultSet rs = null;
+	
+	//public static void main(String[] args) {}
 	
 	public static void abrir() {
 		try { 
@@ -26,20 +29,18 @@ public class conector {
 		}
 	}
 	
-	public static void main(String[] args) {
+/*	public static void main(String[] args) {
 		try { 
 			abrir();
 			String sql = consultarCarrito(4);
-			ResultSet rs = stmt.executeQuery(sql);
-			//sql = agregarCarrito();
-			//stmt.executeUpdate(sql);
+			rs = stmt.executeQuery(sql);
 			rs.next();
-			//System.out.println(rs.getString("idCart"));
+			System.out.println(rs.getString("idCart"));
 			for (int i = 2; i<=31; i = i+1) {
 				String item = rs.getString(i);
 				System.out.println(item);
 				//System.out.println(item.length());
-				if (item != null) {
+				if (item != null) { 
 				if (item.length() == 12)
 				{
 					String cantidad = item.substring(0,1);
@@ -61,8 +62,37 @@ public class conector {
 		}
 		System.out.println("termino");
 		
+	}*/
+	
+	public static void listo()
+	{
+		try {
+			stmt.close();
+			conn.close();
+			}
+		catch (Exception e)
+		{
+			System.out.println("hubo un error al cerrar stmt o conn");
+		}
 	}
- 
+	
+	public static ResultSet consultar(String sql)
+	{
+		abrir();
+		try {
+			rs = stmt.executeQuery(sql);
+			System.out.println(rs.toString());
+			stmt.close();
+			conn.close();
+		}
+		catch (Exception e)
+		{
+			System.out.println("hubo un error en la consulta");
+			return null;
+		}
+		return rs;
+	}
+	
 	public static String agregarCarrito() {
 		return "INSERT INTO cart (idcart, item01) VALUES ('5', '452321982574')";
 	}
@@ -84,6 +114,22 @@ public class conector {
 		String cart = "insert into cart (idcart) values ('turco');";
 		String clie = "insert into clientes (usuario,nombre,telefeono,direccion,idcart,lastcart) values ('turco','sergio',155123456,'zuviria 200','turco',null);";
 		
+	}
+	public static boolean isEmpleado() {
+		try { 
+			abrir();
+			String sql = "select usuario from usuarios where usuario = 'admin';";
+			rs = stmt.executeQuery(sql);
+			rs.next();	
+			String select = rs.getString("usuario");
+			System.out.println(select);
+			boolean salida = true;
+			return salida;
+		}
+		catch (Exception e) {
+			System.out.println("hubo un error");
+			return false;
+		}
 	}
 }
 

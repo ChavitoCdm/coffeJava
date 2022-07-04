@@ -2,6 +2,7 @@ package coffeeJava;
 
 import java.util.Scanner; 
 import java.io.IOException;
+import coffeeJava.usuario;
 
 public class menu {
 
@@ -18,7 +19,21 @@ public class menu {
 		Scanner sc = new Scanner(System.in);
 		// TODO Auto-generated method stub
 		imprimir("Ingrese su usuario");
+		String usuario = sc.nextLine();
+		usuario usrActual = new usuario(usuario);
+		while(!usrActual.exist)
+		{
+			imprimir("Ingrese su usuario nuevamente");
+			usuario = sc.nextLine();
+			usrActual = new usuario(usuario);
+		}
 		imprimir("Ingrese su contrasena");
+		String contrase = sc.nextLine();
+		while (contrase != correcta)
+		{
+			imprimir("Password incorrecta");
+			contrase = sc.nextLine();
+		}
 		int elegido;
 		if (false) //para admin
 		{
