@@ -20,13 +20,18 @@ public class testBD {
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			System.out.println("creando statement");
 			stmt = conn.createStatement();
-			String sql = "select usuario from usuarios where usuario = 'admin';";
+			String sql = "select usuario from usuarios where usuario = 'asdasd';";
 			ResultSet rs = stmt.executeQuery(sql);
-			rs.next();	
+			if (rs.next()) {
+				System.out.println("existe"); 
+			}
+			else {
+				System.out.println("no existe");
+			}
 			String select = rs.getString("usuario");
 			System.out.println(select); 
 			stmt.close();
-			conn.close();
+			conn.close(); 
 		} 
 		catch (Exception e) {
 			System.out.println("hubo un error");

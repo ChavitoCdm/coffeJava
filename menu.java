@@ -23,7 +23,7 @@ public class menu {
 		usuario usrActual = new usuario();
 		usrActual = conector.usuario(usuario);
 		while(!usrActual.isExist())
-		{
+		{ 
 			imprimir("Ingrese su usuario nuevamente");
 			usuario = sc.nextLine();
 			usrActual = conector.usuario(usuario);
@@ -48,6 +48,18 @@ public class menu {
 				case 1 : {
 					imprimir(1,"agregar usuario");
 					imprimir(2,"borrar usuario");
+					elegido = sc.nextInt();
+					switch (elegido) {
+						case 1 : {
+							imprimir("nombre de usuario para el nuevo: ");
+							usuario = sc.nextLine();
+							
+							break;
+						}
+						case 2 : {
+							break;
+						}
+					}
 					break;
 				}
 				case 2 : {

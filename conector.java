@@ -30,7 +30,7 @@ public class conector {
 		}
 	}
 	
-/*	public static void main(String[] args) {
+	public static void prueba() {
 		try { 
 			abrir();
 			String sql = consultarCarrito(4);
@@ -63,7 +63,7 @@ public class conector {
 		}
 		System.out.println("termino");
 		
-	}*/
+	}
 	
 	public static void listo()
 	{
@@ -135,7 +135,7 @@ public class conector {
 	
 	public static usuario usuario(String usr)
 	{
-		abrir();
+		abrir(); 
 		usuario salida = new usuario();
 		try { 
 			String sql = "select * from usuarios where usuario = '" + usr + "';";
@@ -163,7 +163,56 @@ public class conector {
 		System.out.println("termino");	
 		return salida;
 	}
-
+	
+	public static Cliente registrarCliente(String usr) {
+		Cliente nuevo = new Cliente();
+		abrir(); 
+		usuario salida = new usuario();
+		try { 
+			String sql = "select * from usuarios where usuario = '" + usr + "';";
+			salida.setExist(false);
+			ResultSet rs = stmt.executeQuery(sql);
+			if(rs.next())
+			{
+				salida.setExist(true);
+				salida.setUser(rs.getString("usuario"));
+				salida.setPass(rs.getString("contrase"));
+				sql = "select usuario from administradores where usuario = '" + usr + "';";
+				ResultSet rs2 = stmt.executeQuery(sql);
+				salida.setAdmin(false);
+				if(rs2.next())
+				{
+					salida.setAdmin(true);
+				}
+				stmt.close();
+				conn.close();
+			}
+		} 
+		catch (Exception e) {
+			System.out.println("hubo un error");
+		}
+		System.out.println("termino");	
+		return nuevo;
+	}
+	
+	public static boolean existUser(String usr)
+	{
+		abrir();
+		try { 
+			String sql = "select usuario from usuarios where usuario = '" + usr + "';";
+			ResultSet rs = stmt.executeQuery(sql);
+			if(rs.next()) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		catch (Exception e) {
+			System.out.println("hubo un error al ejecutar");
+			return false;
+		}
+	}
 }
 
 

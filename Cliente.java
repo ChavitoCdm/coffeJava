@@ -1,7 +1,6 @@
 package coffeeJava;
 
-public class Cliente {
-//comentaqrioa
+public class Cliente{
 private String Nombre;
 private String Apellido;
 private int dni;
@@ -32,7 +31,7 @@ public String getDomicilio() {
 public void setDomicilio(String domicilio) {
 	this.Domicilio = domicilio;
 }
-
+  
 //Constructores
 public Cliente() {
 	
