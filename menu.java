@@ -52,8 +52,9 @@ public class menu {
 					switch (elegido) {
 						case 1 : {
 							imprimir("nombre de usuario para el nuevo: ");
-							usuario = sc.nextLine();
-							
+							String nuevo = sc.nextLine();
+							imprimir("comprobando que el usuario no exista");
+							imprimir(nuevo);
 							break;
 						}
 						case 2 : {
