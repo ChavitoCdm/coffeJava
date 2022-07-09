@@ -37,8 +37,8 @@ public class menu {
 			imprimir("Password incorrecta");
 			contrase = sc.nextLine();
 		}
-		int elegido;
-		if (false) //para admin
+		int elegido; 
+		if (usrActual.isAdmin()) //para admin
 		{                  
 			imprimir(1, "control de cliente");
 			imprimir(2, "control de productos");
@@ -65,7 +65,7 @@ public class menu {
 				}
 			}
 		}
-		else if (true) {
+		else{
 			imprimir(1,"descartar todo mi carrito");
 			imprimir(2,"listar mi carrito");
 			imprimir(3,"agregar producto");
