@@ -1,52 +1,47 @@
 package coffeeJava;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
-import java.sql.ResultSet;
+
 
 public class usuario {
 	public String user;
 	public String pass;
 	public boolean isAdmin;
 	public boolean exist;
-	
-	public static final String JBDC_DRIVER = "com.mysql.cj.jdbc.Driver";
-	public static final String DB_URL = "jdbc:mysql://localhost:3306/market";
-	public static String USER = "root";
-	public static String PASS = "market";
-	private static Connection conn = null;
-	private static Statement stmt = null;
-	
-	public usuario(String usr)
+ 	
+	public usuario()
 	{
-		try { 
-			Class.forName(JBDC_DRIVER);
-			System.out.println("Conectando...");
-			conn = DriverManager.getConnection(DB_URL, USER, PASS);
-			System.out.println("creando statement");
-			stmt = conn.createStatement();
-			String sql = "select * from usuarios where usuario = '" + usr + "';";
-			this.exist = false;
-			ResultSet rs = stmt.executeQuery(sql);
-			if(rs.next())
-			{
-				this.exist = true;
-				this.user = rs.getString("usuario");
-				this.pass = rs.getString("contrase");
-				sql = "select usuario from administradores where usuario = '" + usr + "';";
-				ResultSet rs2 = stmt.executeQuery(sql);
-				if(rs2.next())
-				{
-					this.isAdmin = true;
-				}
-				stmt.close();
-				conn.close();
-			}
-		} 
-		catch (Exception e) {
-			System.out.println("hubo un error");
-		}
-		System.out.println("termino");	
+		
+	}
+	
+	public String getUser() {
+		return user;
+	}
+
+	public void setUser(String user) {
+		this.user = user;
+	}
+
+	public String getPass() {
+		return pass;
+	}
+
+	public void setPass(String pass) {
+		this.pass = pass;
+	}
+
+	public boolean isAdmin() {
+		return isAdmin;
+	}
+
+	public void setAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+
+	public boolean isExist() {
+		return exist;
+	}
+
+	public void setExist(boolean exist) {
+		this.exist = exist;
 	}
 
 	public void tooString() {

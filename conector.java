@@ -1,5 +1,6 @@
 package coffeeJava;
 
+import coffeeJava.usuario;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
@@ -131,6 +132,38 @@ public class conector {
 			return false;
 		}
 	}
+	
+	public static usuario usuario(String usr)
+	{
+		abrir();
+		usuario salida = new usuario();
+		try { 
+			String sql = "select * from usuarios where usuario = '" + usr + "';";
+			salida.setExist(false);
+			ResultSet rs = stmt.executeQuery(sql);
+			if(rs.next())
+			{
+				salida.setExist(true);
+				salida.setUser(rs.getString("usuario"));
+				salida.setPass(rs.getString("contrase"));
+				sql = "select usuario from administradores where usuario = '" + usr + "';";
+				ResultSet rs2 = stmt.executeQuery(sql);
+				salida.setAdmin(false);
+				if(rs2.next())
+				{
+					salida.setAdmin(true);
+				}
+				stmt.close();
+				conn.close();
+			}
+		} 
+		catch (Exception e) {
+			System.out.println("hubo un error");
+		}
+		System.out.println("termino");	
+		return salida;
+	}
+
 }
 
 

@@ -20,23 +20,26 @@ public class menu {
 		// TODO Auto-generated method stub
 		imprimir("Ingrese su usuario");
 		String usuario = sc.nextLine();
-		usuario usrActual = new usuario(usuario);
-		while(!usrActual.exist)
+		usuario usrActual = new usuario();
+		usrActual = conector.usuario(usuario);
+		while(!usrActual.isExist())
 		{
 			imprimir("Ingrese su usuario nuevamente");
 			usuario = sc.nextLine();
-			usrActual = new usuario(usuario);
+			usrActual = conector.usuario(usuario);
 		}
-		imprimir("Ingrese su contrasena");
+		imprimir("Ingrese su contraseña");
 		String contrase = sc.nextLine();
-		while (contrase != correcta)
+		imprimir(contrase);
+		imprimir(usrActual.getPass());
+		while (!contrase.equals(usrActual.getPass()))
 		{
 			imprimir("Password incorrecta");
 			contrase = sc.nextLine();
 		}
 		int elegido;
 		if (false) //para admin
-		{
+		{                  
 			imprimir(1, "control de cliente");
 			imprimir(2, "control de productos");
 			imprimir(3, "control de ventas");

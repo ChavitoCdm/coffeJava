@@ -1,4 +1,4 @@
-package CoffeeJava;
+package coffeeJava;
 
 public class Cliente {
 
