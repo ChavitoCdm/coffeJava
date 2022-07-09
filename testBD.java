@@ -34,7 +34,7 @@ public class testBD {
 			conn.close(); 
 		} 
 		catch (Exception e) {
-			System.out.println("hubo un error");
+			System.err.println("hubo un error");
 		}
 		System.out.println("termino");	
 	}
