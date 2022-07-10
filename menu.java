@@ -30,8 +30,8 @@ public class menu {
 		}
 		imprimir("Ingrese su contraseña");
 		String contrase = sc.nextLine();
-		imprimir(contrase);
-		imprimir(usrActual.getPass());
+		//imprimir(contrase);
+		//imprimir(usrActual.getPass());
 		while (!contrase.equals(usrActual.getPass()))
 		{
 			imprimir("Password incorrecta");
@@ -52,9 +52,11 @@ public class menu {
 					switch (elegido) {
 						case 1 : {
 							imprimir("nombre de usuario para el nuevo: ");
-							String nuevo = sc.nextLine();
-							imprimir("comprobando que el usuario no exista");
-							imprimir(nuevo);
+							String nuevo = sc.next();
+							while (conector.existUser(nuevo)) {
+								imprimir("este ya existe");
+								nuevo = sc.next();
+							}
 							break;
 						}
 						case 2 : {

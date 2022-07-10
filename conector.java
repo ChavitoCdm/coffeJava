@@ -20,9 +20,9 @@ public class conector {
 	public static void abrir() {
 		try { 
 			Class.forName(JBDC_DRIVER);
-			System.out.println("Conectando...");
+			//System.out.println("Conectando...");
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
-			System.out.println("creando statement");
+			//System.out.println("creando statement");
 			stmt = conn.createStatement();
 		}
 		catch (Exception e) {
@@ -162,7 +162,7 @@ public class conector {
 		}
 		System.out.println("termino");	
 		return salida;
-	}
+	} 
 	
 	public static Cliente registrarCliente(String usr) {
 		Cliente nuevo = new Cliente();
