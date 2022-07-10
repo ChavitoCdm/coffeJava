@@ -164,11 +164,13 @@ public class conector {
 		return salida;
 	} 
 	
-	public static void registrarCliente(String usr, String pass, String nombre, String numero, String domicilio) {
+	public static void registrarCliente(String usr, String pass, String nombre, Double numero, String domicilio) {
 		abrir(); 
 		try { 
 			String user = "insert into usuarios values ('"+usr+"','mail@mail.com','"+pass+"');";
-			String clie = "insert into clientes (usuario,nombre,telefeono,direccion,lastcart) values ('"+usr+"','"+nombre+"',"+numero+",'"+domicilio+"',null);";
+			String clie = "insert into clientes (usuario,nombre,telefono,direccion,lastcart) values ('"+usr+"','"+nombre+"',"+numero+",'"+domicilio+"',null);";
+			System.out.println(user);
+			System.out.println(clie);
 			stmt.executeUpdate(user);
 			stmt.executeUpdate(clie);
 			stmt.close();
@@ -196,6 +198,20 @@ public class conector {
 		catch (Exception e) {
 			System.out.println("hubo un error al ejecutar");
 			return false;
+		}
+	}
+	
+	public static void borrarCliente(String usuario)
+	{
+		abrir();
+		try {
+			String sql1 = "delete from usuarios where usuario = '"+usuario+"';";
+			String sql2 = "delete from clientes where usuario = '"+usuario+"';";
+			stmt.executeUpdate(sql1);
+			stmt.executeUpdate(sql2);
+		}
+		catch (Exception e) {
+			System.out.println("hubo un error al ejecutar");
 		}
 	}
 }

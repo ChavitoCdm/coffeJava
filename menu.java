@@ -15,7 +15,7 @@ public class menu {
 		System.out.println(opcion);	
 	}
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws Exception {
 		Scanner sc = new Scanner(System.in);
 		// TODO Auto-generated method stub
 		imprimir("Ingrese su usuario");
@@ -59,16 +59,21 @@ public class menu {
 							}
 							imprimir("crear una contrasenia");
 							contrase = sc.next();
-							imprimir("como se llama?");
+							imprimir("como es su primer nombre?");
 							String nombre = sc.next();
+							imprimir("como es su apellido?");
+							String apellido = sc.next();
 							imprimir("cual es su numero?");
-							String numero = sc.next();
+							Double numero = sc.nextDouble();
 							imprimir("donde vive?");
-							String domicilio = sc.next();
-							conector.agregarCliente();
-							break;
+							String domicilio = sc.next(); //solo toma la primera palabra antes del espacio, no me funciona con nextLine
+							conector.registrarCliente(nuevo, contrase, nombre + " "+ apellido, numero, domicilio);
+							break;  
 						}
 						case 2 : {
+							imprimir("como es el usuario que quiere borrar?");
+							String usr = sc.next();
+							
 							break;
 						}
 					}
