@@ -113,7 +113,7 @@ public class conector {
 	public static void agregarCliente() {
 		String user = "insert into usuarios values ('turco','mail@mail.com','pass');";
 		String cart = "insert into cart (idcart) values ('turco');";
-		String clie = "insert into clientes (usuario,nombre,telefeono,direccion,idcart,lastcart) values ('turco','sergio',155123456,'zuviria 200','turco',null);";
+		String clie = "insert into clientes (usuario,nombre,telefeono,direccion,lastcart) values ('turco','sergio',155123456,'zuviria 200',,null);";
 		
 	}
 	public static boolean isEmpleado() {
@@ -164,35 +164,20 @@ public class conector {
 		return salida;
 	} 
 	
-	public static Cliente registrarCliente(String usr) {
-		Cliente nuevo = new Cliente();
+	public static void registrarCliente(String usr, String pass, String nombre, String numero, String domicilio) {
 		abrir(); 
-		usuario salida = new usuario();
 		try { 
-			String sql = "select * from usuarios where usuario = '" + usr + "';";
-			salida.setExist(false);
-			ResultSet rs = stmt.executeQuery(sql);
-			if(rs.next())
-			{
-				salida.setExist(true);
-				salida.setUser(rs.getString("usuario"));
-				salida.setPass(rs.getString("contrase"));
-				sql = "select usuario from administradores where usuario = '" + usr + "';";
-				ResultSet rs2 = stmt.executeQuery(sql);
-				salida.setAdmin(false);
-				if(rs2.next())
-				{
-					salida.setAdmin(true);
-				}
-				stmt.close();
-				conn.close();
-			}
+			String user = "insert into usuarios values ('"+usr+"','mail@mail.com','"+pass+"');";
+			String clie = "insert into clientes (usuario,nombre,telefeono,direccion,lastcart) values ('"+usr+"','"+nombre+"',"+numero+",'"+domicilio+"',null);";
+			stmt.executeUpdate(user);
+			stmt.executeUpdate(clie);
+			stmt.close();
+			conn.close();
 		} 
 		catch (Exception e) {
 			System.out.println("hubo un error");
 		}
 		System.out.println("termino");	
-		return nuevo;
 	}
 	
 	public static boolean existUser(String usr)

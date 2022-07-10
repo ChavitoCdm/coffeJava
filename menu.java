@@ -54,9 +54,18 @@ public class menu {
 							imprimir("nombre de usuario para el nuevo: ");
 							String nuevo = sc.next();
 							while (conector.existUser(nuevo)) {
-								imprimir("este ya existe");
+								imprimir("este ya existe, elegi otro usuario");
 								nuevo = sc.next();
 							}
+							imprimir("crear una contrasenia");
+							contrase = sc.next();
+							imprimir("como se llama?");
+							String nombre = sc.next();
+							imprimir("cual es su numero?");
+							String numero = sc.next();
+							imprimir("donde vive?");
+							String domicilio = sc.next();
+							conector.agregarCliente();
 							break;
 						}
 						case 2 : {
