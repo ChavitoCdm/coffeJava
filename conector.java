@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class conector {
 	public static final String JBDC_DRIVER = "com.mysql.cj.jdbc.Driver";
@@ -205,10 +206,56 @@ public class conector {
 	{
 		abrir();
 		try {
-			String sql1 = "delete from usuarios where usuario = '"+usuario+"';";
-			String sql2 = "delete from clientes where usuario = '"+usuario+"';";
+			String sql2 = "delete from usuarios where usuario = '"+usuario+"';";
+			String sql1 = "delete from clientes where usuario = '"+usuario+"';";
 			stmt.executeUpdate(sql1);
 			stmt.executeUpdate(sql2);
+		}
+		catch (Exception e) {
+			System.out.println("hubo un error al ejecutar");
+		}
+	}
+	
+	public static ArrayList listarMarcas()
+	{
+		ArrayList<String> marcas = new ArrayList<String>();
+		abrir();
+		int salida = 0;
+		try {
+			String sql = "select * from marcas;";
+			rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				int idMar = rs.getInt("id");
+				String nomMar = rs.getString("nombre");
+				System.out.println(idMar + ". " + nomMar);
+				marcas.add(nomMar);
+			}
+			return marcas;
+		}
+		catch (Exception e) {
+			System.out.println("hubo un error al ejecutar");
+			return null;
+		}
+	}
+	
+	public static void agregarMarca(int id, String marca) {
+		String sql = "insert into marcas values ("+id+" , '"+marca+"');";
+		abrir();
+		try {
+			stmt.executeUpdate(sql);
+		}
+		catch (Exception e) {
+			System.out.println("hubo un error al ejecutar");
+		}
+	}
+	
+	public static void ingresarProducto(String nombMarc, int idMarc, int precioV, int cantidad)
+	{
+		String sql = "insert into productos(nombre,idMarcas,precioVentas,cantidad) values ('"+nombMarc+"',"+idMarc+","+precioV+","+cantidad+");";
+		abrir();
+		try {
+			System.out.println(sql);
+			stmt.executeUpdate(sql);
 		}
 		catch (Exception e) {
 			System.out.println("hubo un error al ejecutar");

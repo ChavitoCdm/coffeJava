@@ -68,12 +68,17 @@ public class menu {
 							imprimir("donde vive?");
 							String domicilio = sc.next(); //solo toma la primera palabra antes del espacio, no me funciona con nextLine
 							conector.registrarCliente(nuevo, contrase, nombre + " "+ apellido, numero, domicilio);
-							break;  
+							break;
 						}
 						case 2 : {
 							imprimir("como es el usuario que quiere borrar?");
 							String usr = sc.next();
-							
+							while (!conector.existUser(usr))
+							{
+								imprimir("no existe, como es el usuario que quiere borrar?");
+								usr = sc.next();	
+							}
+							conector.borrarCliente(usr);
 							break;
 						}
 					}
@@ -83,6 +88,26 @@ public class menu {
 					imprimir(1,"agregar 1 producto");
 					imprimir(2,"agregar lote de procutos");
 					imprimir(3,"borrar producto");
+					elegido = sc.nextInt();
+					switch (elegido){
+						case 1 : {
+							imprimir(0,"agregar marcar");
+							int cantidad = conector.listarMarcas();
+							int elegir = sc.nextInt();
+							if (elegir == 0) {
+								imprimir("nombra de la marca:");
+								String nuevaMarca = sc.next();
+								conector.agregarMarca(cantidad+1 , nuevaMarca);
+							}
+							else {
+								imprimir("nombre del producto, una sola palabra");
+								String nomProd = sc.next;
+								imprimir("precio de venta:");
+								
+								imprimir("cuantos ingresaron?")
+							}
+						}
+					}
 					break;
 				}
 				case 3 : {
