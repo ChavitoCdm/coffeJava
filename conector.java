@@ -1,11 +1,12 @@
 package coffeeJava;
 
-import coffeeJava.usuario;
+import coffeeJava.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class conector {
 	public static final String JBDC_DRIVER = "com.mysql.cj.jdbc.Driver";
@@ -95,9 +96,6 @@ public class conector {
 		return rs;
 	}
 	
-	public static String agregarCarrito() {
-		return "INSERT INTO cart (idcart, item01) VALUES ('5', '452321982574')";
-	}
 	
 	public static String consultarCarrito(int idcart) {
 		String consulta = "SELECT * from market.cart where idcart = " + idcart;
@@ -262,8 +260,120 @@ public class conector {
 		}
 	}
 	
-	public static void mostrarCarrito(String usr) {
-		
+	public static HashMap listarProductos(int idMarc) {
+		abrir();
+		int salida = 0;
+		HashMap<Integer,producto> selectProd = new HashMap<Integer,producto>();
+		try {
+			String sql = "SELECT productos.id, productos.nombre, marcas.nombre, productos.precioVentas FROM productos"
+					+ " inner join marcas  on productos.idMarcas = marcas.id"
+					+ " where idMarcas = "+idMarc+";";
+			//System.out.println(sql);
+			rs = stmt.executeQuery(sql);
+			Integer elegir = new Integer(0); 
+			while (rs.next()) {
+				elegir = elegir + 1;
+				int idProd = rs.getInt("productos.id");
+				String prodNom = rs.getString("productos.nombre");
+				String marca = rs.getString("marcas.nombre");
+				int precio = rs.getInt("productos.precioVentas");
+				selectProd.put(elegir, new producto(idProd, prodNom, marca, precio));
+				System.out.print(elegir + ". ");
+				System.out.print(prodNom + " ");
+				System.out.print(marca + " ");
+				System.out.println(precio);
+			}
+			return selectProd;
+		}
+		catch (Exception e) {
+			System.out.println("hubo un error al ejecutar listarProductos");
+			return null;
+		}
+	}
+	
+	public static int mostrarCarrito(String usr) {
+		String sql = "select productos.nombre, marcas.nombre, carrito.cantidad, productos.precioVentas "
+				+ "from (carrito "
+				+ "inner join productos on carrito.idProducto = productos.id) "
+				+ "inner join marcas on productos.idMarcas = marcas.id "
+				+ "where carrito.idUsuario = '"+usr+"';";
+		abrir();
+		int aPagar = 0;
+		int contador = 0;
+		try {
+			rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				contador = contador + 1;
+				String producto = rs.getString("productos.nombre");
+				String marca = rs.getString("marcas.nombre");
+				int cant = rs.getInt("carrito.cantidad");
+				int precio = rs.getInt("productos.precioVentas");
+				aPagar = aPagar + cant * precio;
+				System.out.print(contador + ". ");
+				System.out.print(producto + " ");
+				System.out.print(marca + " ");
+				System.out.print(cant + " x ");
+				System.out.println(precio + "$");
+			}
+			return aPagar;
+		}
+		catch (Exception e) {
+			System.out.println("hubo un error al ejecutar listarProductos");
+			return 0;
+		}
+	}
+	
+	public static HashMap mapearCarrito(String usr) {
+		String sql = "select productos.nombre, marcas.nombre, carrito.cantidad, productos.precioVentas, carrito.idCompra "
+				+ "from (carrito "
+				+ "inner join productos on carrito.idProducto = productos.id) "
+				+ "inner join marcas on productos.idMarcas = marcas.id "
+				+ "where carrito.idUsuario = '"+usr+"';";
+		abrir();
+		HashMap<Integer,carrito> compra = new HashMap<Integer,carrito>();
+		try {
+			rs = stmt.executeQuery(sql);
+			Integer llave = new Integer(0);
+			while (rs.next()) {
+				llave = llave + 1;
+				String producto = rs.getString("productos.nombre");
+				String marca = rs.getString("marcas.nombre");
+				int cant = rs.getInt("carrito.cantidad");
+				int precio = rs.getInt("productos.precioVentas");
+				int idCompra = rs.getInt("carrito.idCompra");
+				System.out.print(llave + ". ");
+				String detalle = producto + " " + marca + " " + cant + " x " + precio + "$";
+				compra.put(llave, new carrito(idCompra,detalle));
+			}
+			return compra;
+		}
+		catch (Exception e) {
+			System.out.println("hubo un error al ejecutar listarProductos");
+			return null;
+		}
+	}
+	
+	public static void borrarCarrito(int idCart){
+		String sql = "delete from carrito where idCompra = '"+idCart+"';";
+		abrir();
+		try {
+			stmt.executeUpdate(sql);
+		}
+		catch (Exception e) {
+			
+		}
+	}
+	
+	public static void agregarCarrito(String cliente, int producto, int cantidad) {
+		String sql = "insert into carrito (idUsuario, idProducto, cantidad) values ('"+cliente+"',"+producto+","+cantidad+");";
+		abrir();
+		try {
+			System.out.println(sql);
+			stmt.executeUpdate(sql);
+		}
+		catch (Exception e) {
+			System.out.println("hubo un error al ejecutar");
+		}
 	}
 }
 

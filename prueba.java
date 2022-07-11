@@ -1,7 +1,7 @@
 package coffeeJava;
-import coffeeJava.usuario;
-import java.util.Scanner;
-import java.util.ArrayList;
+import coffeeJava.*;
+import java.util.*;
+
 import coffeeJava.conector;
 
 public class prueba {
@@ -19,27 +19,15 @@ public class prueba {
 		try {
 			Scanner sc = new Scanner(System.in);
 			///////////////////////////////////
-			imprimir(0,"agregar marcar");
-			ArrayList<String> marcas = new ArrayList<String>();
-			marcas = conector.listarMarcas();
-			int cantidad = marcas.size();
-			int elegir = sc.nextInt();
-			if (elegir == 0) {
-				imprimir("nombra de la marca:");
-				String nuevaMarca = sc.next();
-				conector.agregarMarca(cantidad+1 , nuevaMarca);
-			}
-			else {
-				String marcEleg = marcas.get(elegir- 1 );
-				imprimir("nombre del producto, una sola palabra");
-				String nomProd = sc.next();
-				imprimir("precio de venta, en pesos sin centavos");
-				int precioVen = sc.nextInt();
-				imprimir("cuantos ingresaron?");
-				int cantProd = sc.nextInt();
-				conector.ingresarProducto(marcEleg, elegir, precioVen, cantProd);
-			}
-			
+			HashMap<Integer,carrito> compra = new HashMap<Integer,carrito>();
+			carrito cartActual = new carrito();
+			compra = conector.mapearCarrito("herman");
+			imprimir("Seleccione cual quiere borrar: ");
+			int elegido = sc.nextInt();
+			Integer aBorrar = new Integer(elegido);
+			cartActual = compra.get(aBorrar);
+			int idCart = cartActual.getIdCompra();
+			conector.borrarCarrito(idCart);
 			///////////////////////////////////////
 		}
 		catch (Exception e)
