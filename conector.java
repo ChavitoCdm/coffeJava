@@ -63,7 +63,7 @@ public class conector {
 		catch (Exception e) {
 			System.out.println("hubo un error");
 		}
-		System.out.println("termino");
+		//System.out.println("termino");
 		
 	}
 	
@@ -168,8 +168,8 @@ public class conector {
 		try { 
 			String user = "insert into usuarios values ('"+usr+"','mail@mail.com','"+pass+"');";
 			String clie = "insert into clientes (usuario,nombre,telefono,direccion,lastcart) values ('"+usr+"','"+nombre+"',"+numero+",'"+domicilio+"',null);";
-			System.out.println(user);
-			System.out.println(clie);
+			//System.out.println(user);
+			//System.out.println(clie);
 			stmt.executeUpdate(user);
 			stmt.executeUpdate(clie);
 			stmt.close();
@@ -178,7 +178,7 @@ public class conector {
 		catch (Exception e) {
 			System.out.println("hubo un error");
 		}
-		System.out.println("termino");	
+		//System.out.println("termino");	
 	}
 	
 	public static boolean existUser(String usr)
@@ -252,7 +252,7 @@ public class conector {
 		String sql = "insert into productos(nombre,idMarcas,precioVentas,cantidad) values ('"+nombMarc+"',"+idMarc+","+precioV+","+cantidad+");";
 		abrir();
 		try {
-			System.out.println(sql);
+			//System.out.println(sql);
 			stmt.executeUpdate(sql);
 		}
 		catch (Exception e) {
@@ -368,7 +368,7 @@ public class conector {
 		String sql = "insert into carrito (idUsuario, idProducto, cantidad) values ('"+cliente+"',"+producto+","+cantidad+");";
 		abrir();
 		try {
-			System.out.println(sql);
+			//System.out.println(sql);
 			stmt.executeUpdate(sql);
 		}
 		catch (Exception e) {
