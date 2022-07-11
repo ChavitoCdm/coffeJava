@@ -144,9 +144,9 @@ public class menu {
 				break;
 				}
 			case 2 : { /////////////findAll carrito
-				conector.mostrarCarrito(usuario);
-				imprimir("finalizar la compra");
-				imprimir("total a pagar con descuento es:");
+				int deuda;
+				deuda = conector.mostrarCarrito(usuario);
+				System.out.print("total a pagar: " + deuda + "$");
 				break;
 				}
 			case 3 : { //////////////agregar producto al carrito

@@ -269,7 +269,7 @@ public class conector {
 			String sql = "SELECT productos.id, productos.nombre, marcas.nombre, productos.precioVentas FROM productos"
 					+ " inner join marcas  on productos.idMarcas = marcas.id"
 					+ " where idMarcas = "+idMarc+";";
-			System.out.println(sql);
+			//System.out.println(sql);
 			rs = stmt.executeQuery(sql);
 			Integer elegir = new Integer(0); 
 			while (rs.next()) {
@@ -292,8 +292,36 @@ public class conector {
 		}
 	}
 	
-	public static void mostrarCarrito(String usr) {
-		
+	public static int mostrarCarrito(String usr) {
+		String sql = "select productos.nombre, marcas.nombre, carrito.cantidad, productos.precioVentas "
+				+ "from (carrito "
+				+ "inner join productos on carrito.idProducto = productos.id) "
+				+ "inner join marcas on productos.idMarcas = marcas.id "
+				+ "where carrito.idUsuario = '"+usr+"';";
+		abrir();
+		int aPagar = 0;
+		int contador = 0;
+		try {
+			rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				contador = contador + 1;
+				String producto = rs.getString("productos.nombre");
+				String marca = rs.getString("marcas.nombre");
+				int cant = rs.getInt("carrito.cantidad");
+				int precio = rs.getInt("productos.precioVentas");
+				aPagar = aPagar + cant * precio;
+				System.out.print(contador + ". ");
+				System.out.print(producto + " ");
+				System.out.print(marca + " ");
+				System.out.print(cant + " x ");
+				System.out.println(precio + "$");
+			}
+			return aPagar;
+		}
+		catch (Exception e) {
+			System.out.println("hubo un error al ejecutar listarProductos");
+			return 0;
+		}
 	}
 	
 	public static void agregarCarrito(String cliente, int producto, int cantidad) {

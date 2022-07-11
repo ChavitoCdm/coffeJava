@@ -22,7 +22,9 @@ public class prueba {
 		try {
 			Scanner sc = new Scanner(System.in);
 			///////////////////////////////////
-			
+			int deuda;
+			deuda = conector.mostrarCarrito("herman");
+			System.out.print("total a pagar: " + deuda + "$");
 			///////////////////////////////////////
 		}
 		catch (Exception e)
