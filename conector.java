@@ -262,18 +262,16 @@ public class conector {
 		}
 	}
 	
-	public static void listarProductos(String marca) {
+	public static void listarProductos(int idMarc) {
 		abrir();
 		int salida = 0;
 		try {
-			ArrayList<String> marcas = new ArrayList<String>();
-			marcas = conector.listarMarcas();
-			int elegir = sc.nextInt();
-			String sql = "select * from productos where ;";
+			String sql = "select * from marcas ;";
 			rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				int idMar = rs.getInt("id");
 				String nomMar = rs.getString("nombre");
+				
 				System.out.println(idMar + ". " + nomMar);
 			}
 		}

@@ -19,12 +19,9 @@ public class prueba {
 		try {
 			Scanner sc = new Scanner(System.in);
 			///////////////////////////////////
-			imprimir(0,"agregar marcar");
-			ArrayList<String> marcas = new ArrayList<String>();
-			marcas = conector.listarMarcas();
-			int cantidad = marcas.size();
-			int elegir = sc.nextInt();
-			
+			conector.listarMarcas();
+			int idMarc = sc.nextInt();
+						
 			///////////////////////////////////////
 		}
 		catch (Exception e)
