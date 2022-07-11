@@ -140,12 +140,18 @@ public class menu {
 			elegido = sc.nextInt();
 			switch (elegido) {
 			case 1 : {/////////////////////borrar todo el carrito
-				
+				break;
 				}
 			case 2 : { /////////////findAll carrito
 				conector.mostrarCarrito(usuario);
 				imprimir("finalizar la compra");
 				imprimir("total a pagar con descuento es:");
+				break;
+				}
+			case 3 : { //////////////agregar producto al carrito
+				imprimir("seleccionar producto");
+				
+				imprimir("seleccionar la cantidad");
 				
 				}
 			}

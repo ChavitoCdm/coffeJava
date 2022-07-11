@@ -24,21 +24,6 @@ public class prueba {
 			marcas = conector.listarMarcas();
 			int cantidad = marcas.size();
 			int elegir = sc.nextInt();
-			if (elegir == 0) {
-				imprimir("nombra de la marca:");
-				String nuevaMarca = sc.next();
-				conector.agregarMarca(cantidad+1 , nuevaMarca);
-			}
-			else {
-				String marcEleg = marcas.get(elegir- 1 );
-				imprimir("nombre del producto, una sola palabra");
-				String nomProd = sc.next();
-				imprimir("precio de venta, en pesos sin centavos");
-				int precioVen = sc.nextInt();
-				imprimir("cuantos ingresaron?");
-				int cantProd = sc.nextInt();
-				conector.ingresarProducto(marcEleg, elegir, precioVen, cantProd);
-			}
 			
 			///////////////////////////////////////
 		}

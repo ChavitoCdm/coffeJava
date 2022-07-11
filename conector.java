@@ -262,8 +262,40 @@ public class conector {
 		}
 	}
 	
+	public static void listarProductos(String marca) {
+		abrir();
+		int salida = 0;
+		try {
+			ArrayList<String> marcas = new ArrayList<String>();
+			marcas = conector.listarMarcas();
+			int elegir = sc.nextInt();
+			String sql = "select * from productos where ;";
+			rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				int idMar = rs.getInt("id");
+				String nomMar = rs.getString("nombre");
+				System.out.println(idMar + ". " + nomMar);
+			}
+		}
+		catch (Exception e) {
+			System.out.println("hubo un error al ejecutar");
+		}
+	}
+	
 	public static void mostrarCarrito(String usr) {
 		
+	}
+	
+	public static void agregarCarrito(String cliente, int producto) {
+		String sql = "insert into carrito values ('idusuario','idproducto',cantidad);";
+		abrir();
+		try {
+			System.out.println(sql);
+			stmt.executeUpdate(sql);
+		}
+		catch (Exception e) {
+			System.out.println("hubo un error al ejecutar");
+		}
 	}
 }
 
