@@ -144,6 +144,9 @@ public class menu {
 				}
 			case 2 : { /////////////findAll carrito
 				conector.mostrarCarrito(usuario);
+				imprimir("finalizar la compra");
+				imprimir("total a pagar con descuento es:");
+				
 				}
 			}
 		}
