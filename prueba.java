@@ -1,7 +1,10 @@
 package coffeeJava;
 import coffeeJava.usuario;
+import coffeeJava.producto;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import coffeeJava.conector;
 
 public class prueba {
@@ -19,9 +22,7 @@ public class prueba {
 		try {
 			Scanner sc = new Scanner(System.in);
 			///////////////////////////////////
-			conector.listarMarcas();
-			int idMarc = sc.nextInt();
-						
+			
 			///////////////////////////////////////
 		}
 		catch (Exception e)

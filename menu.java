@@ -1,6 +1,7 @@
 package coffeeJava;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner; 
 import java.io.IOException;
 import coffeeJava.usuario;
@@ -110,7 +111,7 @@ public class menu {
 								int precioVen = sc.nextInt();
 								imprimir("cuantos hay?");
 								int cantProd = sc.nextInt();
-								conector.ingresarProducto(marcEleg, elegir, precioVen, cantProd);
+								conector.ingresarProducto(nomProd, elegir, precioVen, cantProd);
 							}
 						}
 						case 2 : {
@@ -149,9 +150,19 @@ public class menu {
 				break;
 				}
 			case 3 : { //////////////agregar producto al carrito
+				HashMap<Integer,producto> listProd = new HashMap<Integer,producto>();
+				producto selecProd = new producto();
+				conector.listarMarcas();
+				int idMarca = sc.nextInt();
+				listProd = conector.listarProductos(idMarca);
 				imprimir("seleccionar producto");
-				
+				int eleccion = sc.nextInt();
 				imprimir("seleccionar la cantidad");
+				int cantidad = sc.nextInt();
+				//Integer cual = new Integer(cantidad);
+				selecProd = listProd.get(eleccion);
+				int idProducto = selecProd.getIdProd();
+				conector.agregarCarrito(usuario,idProducto,cantidad);
 				
 				}
 			}
