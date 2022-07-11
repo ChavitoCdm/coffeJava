@@ -1,5 +1,6 @@
 package coffeeJava;
 
+import java.util.ArrayList;
 import java.util.Scanner; 
 import java.io.IOException;
 import coffeeJava.usuario;
@@ -50,7 +51,7 @@ public class menu {
 					imprimir(2,"borrar usuario");
 					elegido = sc.nextInt();
 					switch (elegido) {
-						case 1 : {
+						case 1 : { ////////////agregar usuario
 							imprimir("nombre de usuario para el nuevo: ");
 							String nuevo = sc.next();
 							while (conector.existUser(nuevo)) {
@@ -70,7 +71,7 @@ public class menu {
 							conector.registrarCliente(nuevo, contrase, nombre + " "+ apellido, numero, domicilio);
 							break;
 						}
-						case 2 : {
+						case 2 : { /////borrar usuario
 							imprimir("como es el usuario que quiere borrar?");
 							String usr = sc.next();
 							while (!conector.existUser(usr))
@@ -90,9 +91,11 @@ public class menu {
 					imprimir(3,"borrar producto");
 					elegido = sc.nextInt();
 					switch (elegido){
-						case 1 : {
+						case 1 : { ////////////agregar producto o marca
 							imprimir(0,"agregar marcar");
-							int cantidad = conector.listarMarcas();
+							ArrayList<String> marcas = new ArrayList<String>();
+							marcas = conector.listarMarcas();
+							int cantidad = marcas.size();
 							int elegir = sc.nextInt();
 							if (elegir == 0) {
 								imprimir("nombra de la marca:");
@@ -100,12 +103,23 @@ public class menu {
 								conector.agregarMarca(cantidad+1 , nuevaMarca);
 							}
 							else {
+								String marcEleg = marcas.get(elegir- 1 );
 								imprimir("nombre del producto, una sola palabra");
-								String nomProd = sc.next;
-								imprimir("precio de venta:");
-								
-								imprimir("cuantos ingresaron?")
+								String nomProd = sc.next();
+								imprimir("precio de venta, en pesos sin centavos");
+								int precioVen = sc.nextInt();
+								imprimir("cuantos hay?");
+								int cantProd = sc.nextInt();
+								conector.ingresarProducto(marcEleg, elegir, precioVen, cantProd);
 							}
+						}
+						case 2 : {
+							imprimir("aun sin programar");
+							break;
+						}
+						case 3 : {
+							imprimir("aun sin programar");
+							break;
 						}
 					}
 					break;
@@ -123,6 +137,15 @@ public class menu {
 			imprimir(1,"descartar todo mi carrito");
 			imprimir(2,"listar mi carrito");
 			imprimir(3,"agregar producto");
+			elegido = sc.nextInt();
+			switch (elegido) {
+			case 1 : {/////////////////////borrar todo el carrito
+				
+				}
+			case 2 : { /////////////findAll carrito
+				conector.mostrarCarrito(usuario);
+				}
+			}
 		}
 	}
 }

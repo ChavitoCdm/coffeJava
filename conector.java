@@ -261,6 +261,10 @@ public class conector {
 			System.out.println("hubo un error al ejecutar");
 		}
 	}
+	
+	public static void mostrarCarrito(String usr) {
+		
+	}
 }
 
 
