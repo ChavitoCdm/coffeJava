@@ -144,6 +144,7 @@ public class menu {
 				}
 			case 2 : { /////////////findAll carrito
 				conector.mostrarCarrito(usuario);
+				imprimir("realizar la compra");
 				}
 			}
 		}
