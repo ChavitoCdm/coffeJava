@@ -1,6 +1,7 @@
 package coffeeJava;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner; 
 import java.io.IOException;
 import coffeeJava.usuario;
@@ -110,7 +111,7 @@ public class menu {
 								int precioVen = sc.nextInt();
 								imprimir("cuantos hay?");
 								int cantProd = sc.nextInt();
-								conector.ingresarProducto(marcEleg, elegir, precioVen, cantProd);
+								conector.ingresarProducto(nomProd, elegir, precioVen, cantProd);
 							}
 						}
 						case 2 : {
@@ -134,17 +135,50 @@ public class menu {
 			}
 		}
 		else{
-			imprimir(1,"descartar todo mi carrito");
+			imprimir(1,"descartar algo de mi carrito");
 			imprimir(2,"listar mi carrito");
 			imprimir(3,"agregar producto");
 			elegido = sc.nextInt();
 			switch (elegido) {
-			case 1 : {/////////////////////borrar todo el carrito
+			case 1 : {/////////////////////borrar algo del carrito
+				HashMap<Integer,carrito> compra = new HashMap<Integer,carrito>();
+				carrito cartActual = new carrito();
+				compra = conector.mapearCarrito(usuario);
+				imprimir("Seleccione cual quiere borrar: ");
+				elegido = sc.nextInt();
+				Integer aBorrar = new Integer(elegido);
+				cartActual = compra.get(aBorrar);
+				int idCart = cartActual.getIdCompra();
+				conector.borrarCarrito(idCart);
 				
+				break;
 				}
 			case 2 : { /////////////findAll carrito
+<<<<<<< HEAD
 				conector.mostrarCarrito(usuario);
 				imprimir("realizar la compra");
+=======
+				int deuda;
+				deuda = conector.mostrarCarrito(usuario);
+				System.out.print("total a pagar: " + deuda + "$");
+				break;
+				}
+			case 3 : { //////////////agregar producto al carrito
+				HashMap<Integer,producto> listProd = new HashMap<Integer,producto>();
+				producto selecProd = new producto();
+				conector.listarMarcas();
+				int idMarca = sc.nextInt();
+				listProd = conector.listarProductos(idMarca);
+				imprimir("seleccionar producto");
+				int eleccion = sc.nextInt();
+				imprimir("seleccionar la cantidad");
+				int cantidad = sc.nextInt();
+				//Integer cual = new Integer(cantidad);
+				selecProd = listProd.get(eleccion);
+				int idProducto = selecProd.getIdProd();
+				conector.agregarCarrito(usuario,idProducto,cantidad);
+				
+>>>>>>> conector
 				}
 			}
 		}
