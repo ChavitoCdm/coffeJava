@@ -135,12 +135,22 @@ public class menu {
 			}
 		}
 		else{
-			imprimir(1,"descartar todo mi carrito");
+			imprimir(1,"descartar algo de mi carrito");
 			imprimir(2,"listar mi carrito");
 			imprimir(3,"agregar producto");
 			elegido = sc.nextInt();
 			switch (elegido) {
 			case 1 : {/////////////////////borrar todo el carrito
+				HashMap<Integer,carrito> compra = new HashMap<Integer,carrito>();
+				carrito cartActual = new carrito();
+				compra = conector.mapearCarrito(usuario);
+				imprimir("Seleccione cual quiere borrar: ");
+				elegido = sc.nextInt();
+				Integer aBorrar = new Integer(elegido);
+				cartActual = compra.get(aBorrar);
+				int idCart = cartActual.getIdCompra();
+				conector.borrarCarrito(idCart);
+				
 				break;
 				}
 			case 2 : { /////////////findAll carrito

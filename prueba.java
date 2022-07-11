@@ -1,9 +1,6 @@
 package coffeeJava;
-import coffeeJava.usuario;
-import coffeeJava.producto;
-import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.HashMap;
+import coffeeJava.*;
+import java.util.*;
 
 import coffeeJava.conector;
 
@@ -22,9 +19,15 @@ public class prueba {
 		try {
 			Scanner sc = new Scanner(System.in);
 			///////////////////////////////////
-			int deuda;
-			deuda = conector.mostrarCarrito("herman");
-			System.out.print("total a pagar: " + deuda + "$");
+			HashMap<Integer,carrito> compra = new HashMap<Integer,carrito>();
+			carrito cartActual = new carrito();
+			compra = conector.mapearCarrito("herman");
+			imprimir("Seleccione cual quiere borrar: ");
+			int elegido = sc.nextInt();
+			Integer aBorrar = new Integer(elegido);
+			cartActual = compra.get(aBorrar);
+			int idCart = cartActual.getIdCompra();
+			conector.borrarCarrito(idCart);
 			///////////////////////////////////////
 		}
 		catch (Exception e)
