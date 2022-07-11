@@ -140,7 +140,7 @@ public class menu {
 			imprimir(3,"agregar producto");
 			elegido = sc.nextInt();
 			switch (elegido) {
-			case 1 : {/////////////////////borrar todo el carrito
+			case 1 : {/////////////////////borrar algo del carrito
 				HashMap<Integer,carrito> compra = new HashMap<Integer,carrito>();
 				carrito cartActual = new carrito();
 				compra = conector.mapearCarrito(usuario);
